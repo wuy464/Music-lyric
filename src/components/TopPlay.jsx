@@ -12,29 +12,37 @@ import { TopCharts } from "../pages";
 
 
 const TopChartCard = ({ song, i, isPlaying, activeSong, handlePauseClick, handlePlayClick }) => (
-  <div className="w-full flex flex-row items-center hover:bg-[#4c426e] py-2 p-4 rounded-lg cursor-pointer mb-2">
-    <h3 className="font-bold text-base text-white mr-3"> {i + 1}.</h3>
-    <div className="flex-1 flex flex-row justify-between items-center">
-      <img className="w-20 h-20 rounded-lg" src={song?.images?.coverart} alt={song?.title} />
 
-      <div className="flex-1 flex flex-col justify-center mx-3">
-        <Link to={`/song/${song.key}`}>
-          <p className="text-x font-bold text-white">{song?.title}</p>
-        </Link>
 
-        <Link to={`/artists/${song?.artists[0].adamid}`}>
-          <p className="text-ase font-bold text-gray-300 mt-1">{song?.subtitle}</p>
-        </Link>
+  <div>
+    <div className="w-full flex flex-row items-center hover:bg-[#4c426e] py-2 p-4 rounded-lg cursor-pointer mb-2">
+
+      <h3 className="font-bold text-base text-white mr-3"> {i + 1}.</h3>
+      <div className="flex-1 flex flex-row justify-between items-center">
+        <img className="w-20 h-20 rounded-lg" src={song?.images?.coverart} alt={song?.title} />
+
+        <div className="flex-1 flex flex-col justify-center mx-3">
+          <Link to={`/songs/${song.key}`}>
+            <p className="text-x font-bold text-white">{song?.title}</p>
+          </Link>
+
+          <Link to={`/artists/${song?.artists[0].adamid}`}>
+            <p className="text-ase font-bold text-gray-300 mt-1">{song?.subtitle}</p>
+          </Link>
+        </div>
       </div>
+      <PlayPause
+        isPlaying={isPlaying}
+        activeSong={activeSong}
+        handlePause={handlePauseClick}
+        handlePlay={handlePlayClick}
+        song={song}
+      />
+
     </div>
-    <PlayPause
-      isPlaying={isPlaying}
-      activeSong={activeSong}
-      handlePause={handlePauseClick}
-      handlePlay={handlePlayClick}
-      song={song}
-    />
   </div>
+
+
 
 )
 const TopPlay = () => {
@@ -75,8 +83,8 @@ const TopPlay = () => {
 
           <div className="w-full flex flex-col mt-8 ">
             <div className="flex flex-row justify-between">
-              <h2>Top-chart</h2>
-              <Link to='/top/charts'>
+              <h2 className="text-white text-3xl font-bold">Top-chart</h2>
+              <Link to='/top-charts'>
                 <p className="text-gray-300 text-base cursor-pointer ">See more</p>
               </Link>
             </div>
